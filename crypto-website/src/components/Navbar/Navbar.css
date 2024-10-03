@@ -57,3 +57,15 @@
 .navbar button img{
     width: 13px;
 }
+
+@media (max-width: 768px){
+    .navbar{
+        padding: 20px 5%;
+    }
+    .navbar ul {
+        display: none;
+    }
+    .navbar button img{
+        width: 12px;
+    }
+}
