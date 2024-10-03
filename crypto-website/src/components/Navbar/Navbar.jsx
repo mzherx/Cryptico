@@ -8,7 +8,7 @@ const Navbar = () => {
   const {setCurrency} = useContext(CoinContext)
 
   const currencyHandler = (event) =>{
-    switch (event.target.value){
+    switch (event.targe.value){
       case "usd": {
         setCurrency({name: "usd", symbol: "$"})
         break;
