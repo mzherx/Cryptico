@@ -5,6 +5,10 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Outfit", sans-serif;
+    
+}
+body{
+    background: black;
 }
 a{
     text-decoration: none;
@@ -14,6 +18,5 @@ a{
 .app{
     min-height: 100vh;
     color: white;
-    background: linear-gradient(#0b004e, #1d152f, #002834);
-
+    background: linear-gradient(#0B0B1E, #1C1C44, #3a3a7a5b);
 }

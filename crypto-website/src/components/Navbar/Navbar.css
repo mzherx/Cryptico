@@ -1,71 +1,190 @@
-
-.navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 10%;
-    color: #ddd;
-    border-bottom: 2px solid #3c3c3c;
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5.5%;
+  color: #ddd;
+  border-bottom: 0.2px solid rgba(48, 48, 48, 0.637);
+  border-right: 0.2px solid rgba(48, 48, 48, 0.637);
+  border-left: 0.2px solid rgba(48, 48, 48, 0.637);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-right: 130px;
+  margin-left: 130px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 25px 32px 0 rgba(0, 0, 0, 0.37);
+  position: sticky; /* Make the navbar sticky */
+  top: 0; /* Stick to the top of the viewport */
+  z-index: 1000; /* Ensure it stays above other content */
 }
 
-.navbar .logo{
-    width: max(12vw, 120px);
+.navbar .logo {
+  width: max(13vw, 120px);
 }
 
-.navbar ul{
-    display: flex;
-    gap: 41px;
-    list-style: none;
+.navbar ul {
+  display: flex;
+  gap: 41px;
+  list-style: none;
 }
 
-.navbar li{
-    cursor: pointer;
+.navbar li {
+  cursor: pointer;
+  position: relative; /* Allow absolute positioning for hover effect */
 }
 
-
-.nav-right{
-    display: flex;
-    align-items: center;
-    gap: max(1vw,12px);
-}
-.navbar select{
-    padding: 5px 8px;
-    border-radius: 6px;
-    border: 2px solid white;
-    background: transparent;
-    color: white;
+.navbar li:hover {
+  transform: translateY(-5px); /* Move item up on hover */
 }
 
-.navbar option{
-    background-color: #09005c;
-    color: white;
+.navbar li::after {
+  content: ""; /* Create a line under the item */
+  position: absolute;
+  left: 50%;
+  bottom: -5px; /* Position below the item */
+  width: 0; /* Start with no width */
+  height: 2px; /* Line thickness */
+  background: #4169e1; /* Line color */
+  transition: width 0.3s ease, left 0.3s ease; /* Transition for line */
 }
 
-.navbar button{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 25px;
-    border-radius: 20px;
-    font-size: 15px;
-    font-weight: 500;
-    color: #393939;
-    background: white;
-    border: none;
-    cursor: pointer;
+.navbar li:hover::after {
+  width: 100%; /* Expand line on hover */
+  left: 0; /* Center the line */
 }
-.navbar button img{
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: max(1vw, 12px);
+}
+
+.navbar select {
+  padding: 6px 8px; /* Padding for select element */
+  border-radius: 6px; /* Rounded corners */
+  border: 2px solid white; /* Border color */
+  background: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Transparent background with slight dark tint */
+  color: white; /* Text color */
+  font-size: 12px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background 0.3s ease; /* Transition for background change */
+}
+
+.navbar select:hover {
+  background: rgba(53, 53, 53, 0.671); /* Background change on hover */
+}
+
+.navbar option {
+  background-color: #ffffff; /* Background color of options */
+  border: none;
+  padding: 10px; /* Padding for options */
+  border-radius: 8px; /* Rounded corners for options */
+  color: rgb(0, 0, 0);
+}
+
+.navbar option:hover {
+  background-color: rgba(
+    53,
+    53,
+    53,
+    0.671
+  ); /* Background color on option hover */
+}
+
+/* Optional: Style for the dropdown menu when focused */
+.navbar select:focus {
+  outline: none; /* Remove default outline */
+  border: 2px solid #4169e1; /* Change border color on focus */
+  background: rgba(0, 0, 0, 0.7); /* Slightly darker background */
+}
+
+button {
+  --primary-color: #4169e1;
+  --secondary-color: #fff;
+  --hover-color: #474747;
+  --arrow-width: 10px;
+  --arrow-stroke: 2px;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 8px;
+  color: var(--secondary-color);
+  padding: 13px 20px;
+  background: var(--primary-color);
+  display: flex;
+  transition: 0.2s background;
+  align-items: center;
+  gap: 0.6em;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button .arrow-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button .arrow {
+  margin-top: 0.4px;
+  width: var(--arrow-width);
+  background: var(--primary-color);
+  height: var(--arrow-stroke);
+  position: relative;
+  transition: 0.2s;
+}
+
+button .arrow::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  border: solid var(--secondary-color);
+  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+  display: inline-block;
+  top: -3px;
+  right: 3px;
+  transition: 0.2s;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+button:hover {
+  background-color: var(--hover-color);
+}
+
+button:hover .arrow {
+  background: var(--secondary-color);
+}
+
+button:hover .arrow:before {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 20px 5%;
+  }
+  .navbar ul {
+    display: none;
+  }
+  .navbar button img {
     width: 13px;
+    width: max(13vw, 120px);
+  }
 }
 
-@media (max-width: 768px){
-    .navbar{
-        padding: 20px 5%;
-    }
-    .navbar ul {
-        display: none;
-    }
-    .navbar button img{
-        width: 12px;
-    }
+@media (max-width: 971px) {
+  .navbar ul {
+    display: none;
+  }
+  .navbar {
+    margin-right: 50px;
+    margin-left: 50px;
+  }
 }
