@@ -22,6 +22,7 @@ const Home = () => {
       return item.name.toLowerCase().includes(input.toLowerCase())
     
     })
+
     setDisplayCoin(coins);
   }
  
