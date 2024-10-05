@@ -35,8 +35,8 @@ const Home = () => {
   return (
     <div className='Home'>
       <div className="hero">
-        <h1>Largest <br /> Crypto Marketplace</h1>
-        <p>Welcome to World Largest Cryptocurrency marketplace. Sign up to explore more about cryptos</p>
+        <h1>Ultimate Crypto<br />Exchange Platform</h1>
+        <p>Stay updated with real-time cryptocurrency prices. Sign up to track your favorite coins and explore market trends!</p>
         <form onSubmit={searchHandler}>
 
           <input onChange={inputHandler} list='coinlist'value={input} type="text" placeholder='Search Crypto..' required/>
@@ -51,7 +51,7 @@ const Home = () => {
       <div className="crypto-table">
         <div className="table-layout">
           <p>#</p>
-          <p>Coin</p>
+          <p >Coin</p>
           <p>Price</p>
           <p style={{ textAlign: "center" }}>24H Change</p>
           <p className='market-cap'>Market Cap</p>
