@@ -9,6 +9,7 @@ const Coin = () => {
   const [coinData, setCoinData] = useState(null);
   const [historicalData, setHistoricalData] = useState();
   const { currency } = useContext(CoinContext);
+  const [loading, setLoading] = useState(true); // New loading state
 
   const fetchCoinData = async () => {
     const options = {
@@ -44,11 +45,44 @@ const Coin = () => {
   };
 
   useEffect(() => {
+    // Fetch coin and historical data
     fetchCoinData();
     fetchHistoricalData();
   }, [currency]);
 
-  if (coinData && historicalData) {
+  useEffect(() => {
+    if (coinData && historicalData) {
+      // Set loading to false after 3 seconds
+      const timer = setTimeout(() => {
+        setLoading(false); // Hide loader and show data
+      }, 2000); // 3000 milliseconds = 3 seconds
+
+      return () => clearTimeout(timer); // Cleanup the timer on unmount
+    }
+  }, [coinData, historicalData]); // Run when data is fetched
+
+  if (loading) {
+    return (
+      <div className="spinner">
+        <div id="wifi-loader">
+          <svg className="circle-outer" viewBox="0 0 86 86">
+            <circle className="back" cx="43" cy="43" r="40"></circle>
+            <circle className="front" cx="43" cy="43" r="40"></circle>
+            <circle className="new" cx="43" cy="43" r="40"></circle>
+          </svg>
+          <svg className="circle-middle" viewBox="0 0 60 60">
+            <circle className="back" cx="30" cy="30" r="27"></circle>
+            <circle className="front" cx="30" cy="30" r="27"></circle>
+          </svg>
+          <svg className="circle-inner" viewBox="0 0 34 34">
+            <circle className="back" cx="17" cy="17" r="14"></circle>
+            <circle className="front" cx="17" cy="17" r="14"></circle>
+          </svg>
+          <div className="text" data-text="Searching"></div>
+        </div>
+      </div>
+    );
+  } else if (coinData && historicalData) {
     return (
       <div className='coin'>
         <div className='coin-name'>
@@ -89,16 +123,11 @@ const Coin = () => {
             <li>{currency.symbol}{coinData.market_data.low_24h[currency.name].toLocaleString()}</li>
           </ul>
         </div>
-
-      </div>
-    );
-  } else {
-    return (
-      <div className="spinner">
-        <div className="spin"></div>
       </div>
     );
   }
+
+  return null; // Return null if no data and not loading
 };
 
 export default Coin;
