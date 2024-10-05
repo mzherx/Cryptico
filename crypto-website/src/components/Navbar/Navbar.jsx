@@ -24,6 +24,10 @@ const Navbar = () => {
         setCurrency({ name: "inr", symbol: "₹" });
         break;
       }
+      case "pkr": {
+        setCurrency({ name: "pkr", symbol: "Rs" });
+        break;
+      }
 
       default: {
         setCurrency({ name: "usd", symbol: "$" });
@@ -41,7 +45,6 @@ const Navbar = () => {
           <li>Home</li>
         </Link>
         <li>Features</li>
-        <li>Pricing</li>
         <li>Blog</li>
       </ul>
       <div className="nav-right">
@@ -49,6 +52,7 @@ const Navbar = () => {
           <option value="usd">USD</option>
           <option value="eur">EUR</option>
           <option value="inr">INR</option>
+          <option value="pkr">PKR</option>
         </select>
         <button>
           Sign up
