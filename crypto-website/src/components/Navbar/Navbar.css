@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 5.5%;
+  padding: 20px 4.5%;
   color: #ddd;
   border-bottom: 0.2px solid rgba(48, 48, 48, 0.637);
   border-right: 0.2px solid rgba(48, 48, 48, 0.637);
@@ -20,7 +20,7 @@
 }
 
 .navbar .logo {
-  width: max(13vw, 120px);
+  width: max(13vw, 157px);
 }
 
 .navbar ul {
@@ -152,6 +152,7 @@ button .arrow::before {
   transition: 0.2s;
   padding: 3px;
   transform: rotate(-45deg);
+
 }
 
 button:hover {
@@ -168,14 +169,14 @@ button:hover .arrow:before {
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 20px 5%;
+    padding: 20px 3%;
   }
   .navbar ul {
     display: none;
   }
   .navbar button img {
     width: 13px;
-    width: max(13vw, 120px);
+    width: max(13vw, 133px);
   }
 }
 
@@ -184,7 +185,31 @@ button:hover .arrow:before {
     display: none;
   }
   .navbar {
-    margin-right: 50px;
-    margin-left: 50px;
+    margin-right: 20px;
+    margin-left: 20px;
+
+  }
+  .navbar{
+    padding: 13px 3%;
+  }
+  
+}
+
+
+@media (max-width: 500px){
+  
+  .navbar select{
+    padding-left: 4px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    padding-right: 4px;
+    font-size: 9px;
+  }
+  button{
+    padding-top: 11px;
+    padding-bottom: 11px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 12px;
   }
 }
