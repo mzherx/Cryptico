@@ -7,9 +7,9 @@ import LineChart from '../../components/LineChart/LineChart';
 const Coin = () => {
   const { coinId } = useParams();
   const [coinData, setCoinData] = useState(null);
-  const [historicalData, setHistoricalData] = useState();
+  const [historicalData, setHistoricalData] = useState(null);
   const { currency } = useContext(CoinContext);
-  const [loading, setLoading] = useState(true); // New loading state
+  const [loading, setLoading] = useState(true);
 
   const fetchCoinData = async () => {
     const options = {
@@ -22,7 +22,10 @@ const Coin = () => {
 
     fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`, options)
       .then((response) => response.json())
-      .then((response) => setCoinData(response))
+      .then((response) => {
+        setCoinData(response);
+        setLoading(false);  // Immediately stop loading after data is fetched
+      })
       .catch((err) => console.error(err));
   };
 
@@ -38,28 +41,15 @@ const Coin = () => {
     fetch(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${currency.name}&days=10&interval=daily`, options)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);  // Add this line to check the structure of historicalData
         setHistoricalData(response);
       })
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    // Fetch coin and historical data
     fetchCoinData();
     fetchHistoricalData();
   }, [currency]);
-
-  useEffect(() => {
-    if (coinData && historicalData) {
-      // Set loading to false after 3 seconds
-      const timer = setTimeout(() => {
-        setLoading(false); // Hide loader and show data
-      }, 2000); // 3000 milliseconds = 3 seconds
-
-      return () => clearTimeout(timer); // Cleanup the timer on unmount
-    }
-  }, [coinData, historicalData]); // Run when data is fetched
 
   if (loading) {
     return (
@@ -82,10 +72,12 @@ const Coin = () => {
         </div>
       </div>
     );
-  } else if (coinData && historicalData) {
+  }
+
+  if (coinData && historicalData) {
     return (
-      <div className='coin'>
-        <div className='coin-name'>
+      <div className="coin">
+        <div className="coin-name">
           <img src={coinData.image.large} alt={coinData.name} />
           <p>
             <b>
@@ -123,11 +115,12 @@ const Coin = () => {
             <li>{currency.symbol}{coinData.market_data.low_24h[currency.name].toLocaleString()}</li>
           </ul>
         </div>
+
       </div>
     );
   }
 
-  return null; // Return null if no data and not loading
+  return null;
 };
 
 export default Coin;
