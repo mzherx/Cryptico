@@ -48,5 +48,5 @@ Cryptico fetches live cryptocurrency data from the CoinGecko API, which is then 
 ```    
 ## Contributing
 
-Feel free to submit issues or pull requests to contribute to the development of Cryptico. Let's make it even better
+Feel free to submit issues or pull requests to contribute to the development of Cryptico. Let's make it even better !
 
