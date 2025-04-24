@@ -1,31 +1,45 @@
-.spinner {
+/* Coin.css */
+:root {
+    --primary: #5063F0;
+    --primary-dark: #3946c3;
+    --positive: #00e676;
+    --negative: #ff5252;
+    --text-primary: #ffffff;
+    --text-secondary: #c4c4c4;
+    --bg-primary: #0A0E27;
+    --bg-secondary: #151a30;
+    --bg-card: #1b1f3a;
+    --border-radius: 12px;
+  }
+  
+  /* Loading Spinner (unchanged functionality) */
+  .spinner-container {
     display: grid;
-    place-self: center;
+    place-items: center;
     min-height: 80vh;
-}
-
-#wifi-loader {
+  }
+  
+  .wifi-loader {
     --background: #62abff;
     --front-color: #4169E1;
     --back-color: #c3c8dead;
     --text-color: #ffffff;
-    top: 206px;
     height: 64px;
     border-radius: 50px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#wifi-loader svg {
+  }
+  
+  .wifi-loader svg {
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#wifi-loader svg circle {
+  }
+  
+  .wifi-loader svg circle {
     position: absolute;
     fill: none;
     stroke-width: 6px;
@@ -33,68 +47,68 @@
     stroke-linejoin: round;
     transform: rotate(-100deg);
     transform-origin: center;
-}
-
-#wifi-loader svg circle.back {
+  }
+  
+  .wifi-loader svg circle.back {
     stroke: var(--back-color);
-}
-
-#wifi-loader svg circle.front {
+  }
+  
+  .wifi-loader svg circle.front {
     stroke: var(--front-color);
-}
-
-#wifi-loader svg.circle-outer {
+  }
+  
+  .wifi-loader svg.circle-outer {
     height: 86px;
     width: 86px;
-}
-
-#wifi-loader svg.circle-outer circle {
+  }
+  
+  .wifi-loader svg.circle-outer circle {
     stroke-dasharray: 62.75 188.25;
-}
-
-#wifi-loader svg.circle-outer circle.back {
+  }
+  
+  .wifi-loader svg.circle-outer circle.back {
     animation: circle-outer135 1.8s ease infinite 0.3s;
-}
-
-#wifi-loader svg.circle-outer circle.front {
+  }
+  
+  .wifi-loader svg.circle-outer circle.front {
     animation: circle-outer135 1.8s ease infinite 0.15s;
-}
-
-#wifi-loader svg.circle-middle {
+  }
+  
+  .wifi-loader svg.circle-middle {
     height: 60px;
     width: 60px;
-}
-
-#wifi-loader svg.circle-middle circle {
+  }
+  
+  .wifi-loader svg.circle-middle circle {
     stroke-dasharray: 42.5 127.5;
-}
-
-#wifi-loader svg.circle-middle circle.back {
+  }
+  
+  .wifi-loader svg.circle-middle circle.back {
     animation: circle-middle6123 1.8s ease infinite 0.25s;
-}
-
-#wifi-loader svg.circle-middle circle.front {
+  }
+  
+  .wifi-loader svg.circle-middle circle.front {
     animation: circle-middle6123 1.8s ease infinite 0.1s;
-}
-
-#wifi-loader svg.circle-inner {
+  }
+  
+  .wifi-loader svg.circle-inner {
     height: 34px;
     width: 34px;
-}
-
-#wifi-loader svg.circle-inner circle {
+  }
+  
+  .wifi-loader svg.circle-inner circle {
     stroke-dasharray: 22 66;
-}
-
-#wifi-loader svg.circle-inner circle.back {
+  }
+  
+  .wifi-loader svg.circle-inner circle.back {
     animation: circle-inner162 1.8s ease infinite 0.2s;
-}
-
-#wifi-loader svg.circle-inner circle.front {
+  }
+  
+  .wifi-loader svg.circle-inner circle.front {
     animation: circle-inner162 1.8s ease infinite 0.05s;
-}
-
-#wifi-loader .text {
+  }
+  
+  .wifi-loader .text {
     position: absolute;
     bottom: -40px;
     display: flex;
@@ -104,140 +118,205 @@
     font-weight: 500;
     font-size: 14px;
     letter-spacing: 0.2px;
-}
-
-#wifi-loader .text::before, #wifi-loader .text::after {
+  }
+  
+  .wifi-loader .text::before,
+  .wifi-loader .text::after {
     content: attr(data-text);
-}
-
-#wifi-loader .text::before {
+  }
+  
+  .wifi-loader .text::before {
     color: var(--text-color);
-}
-
-#wifi-loader .text::after {
+  }
+  
+  .wifi-loader .text::after {
     color: var(--front-color);
     animation: text-animation76 3.6s ease infinite;
     position: absolute;
     left: 0;
-}
-
-@keyframes circle-outer135 {
-    0% {
-        stroke-dashoffset: 25;
-    }
-    25% {
-        stroke-dashoffset: 0;
-    }
-    65% {
-        stroke-dashoffset: 301;
-    }
-    80% {
-        stroke-dashoffset: 276;
-    }
-    100% {
-        stroke-dashoffset: 276;
-    }
-}
-
-@keyframes circle-middle6123 {
-    0% {
-        stroke-dashoffset: 17;
-    }
-    25% {
-        stroke-dashoffset: 0;
-    }
-    65% {
-        stroke-dashoffset: 204;
-    }
-    80% {
-        stroke-dashoffset: 187;
-    }
-    100% {
-        stroke-dashoffset: 187;
-    }
-}
-
-@keyframes circle-inner162 {
-    0% {
-        stroke-dashoffset: 9;
-    }
-    25% {
-        stroke-dashoffset: 0;
-    }
-    65% {
-        stroke-dashoffset: 106;
-    }
-    80% {
-        stroke-dashoffset: 97;
-    }
-    100% {
-        stroke-dashoffset: 97;
-    }
-}
-
-@keyframes text-animation76 {
-    0% {
-        clip-path: inset(0 100% 0 0);
-    }
-    50% {
-        clip-path: inset(0);
-    }
-    100% {
-        clip-path: inset(0 0 0 100%);
-    }
-}
-
-
-
-@keyframes rotate{
-    100%{
-        transform: rotate(360deg);
-    }
-}
-
-.coin{
-    padding: 0 20px;
-}
-
-.coin-name{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    margin: 100px auto;
-    margin-bottom: 50px;
-}
-
-.coin-name img{
-    max-width: 100px;
-}
-
-.coin-name p b{
-    font-size: 44px;
-    font-family: 500;
-}
-
-.coin-chart{
-    max-width: 600px;
-    height: 250px;
-    margin: auto;
-}
-
-.coin-info{
-    max-width: 600px;
-    margin: 80px auto;
-    flex-direction: column;
-    display: flex;
-}
-
-.coin-info ul{
+  }
+  
+  /* New Coin Page Styles */
+  .coin-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: var(--text-primary);
+  }
+  
+  .coin-header {
     display: flex;
     justify-content: space-between;
-    padding: 10px 0px;
-    border-bottom: 1px solid #5f5d5f;
-    list-style: none;
-}
-
-.coin-info ul li:last-child{
-    font-weight: 300;
-}
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .coin-identity {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .coin-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+  
+  .coin-name {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+  }
+  
+  .coin-symbol {
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+  }
+  
+  .coin-rank {
+    background: var(--bg-card);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-top: 0.5rem;
+  }
+  
+  .coin-price-section {
+    text-align: right;
+  }
+  
+  .current-price {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+  
+  .price-change {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    display: inline-block;
+  }
+  
+  .price-change.positive {
+    background: rgba(0, 230, 118, 0.1);
+    color: var(--positive);
+  }
+  
+  .price-change.negative {
+    background: rgba(255, 82, 82, 0.1);
+    color: var(--negative);
+  }
+  
+  .chart-container {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    height: 400px;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .stat-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    transition: transform 0.2s;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .stat-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .info-section {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+  }
+  
+  .info-section h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .coin-description {
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  
+  .coin-description a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  
+  .coin-description a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .coin-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .coin-price-section {
+      text-align: left;
+      width: 100%;
+    }
+    
+    .coin-name {
+      font-size: 2rem;
+    }
+    
+    .current-price {
+      font-size: 2rem;
+    }
+    
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .chart-container {
+      height: 300px;
+      padding: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .coin-page {
+      padding: 1rem;
+    }
+    
+    .coin-name {
+      font-size: 1.75rem;
+    }
+    
+    .coin-logo {
+      width: 60px;
+      height: 60px;
+    }
+  }
