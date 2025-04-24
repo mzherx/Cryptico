@@ -1,5 +1,6 @@
 import React from "react";
-import "./TermsAnd.css";
+import "./Termsand.css";
+
 
 const TermsAndConditions = ({ onClose }) => {
   return (
