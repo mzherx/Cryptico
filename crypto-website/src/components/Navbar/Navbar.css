@@ -1,215 +1,262 @@
+/* Navbar.css */
+:root {
+  --primary-blue: #4169e1;
+  --electric-blue: #00c6ff;
+  --text-light: #ffffff;
+  --glass-bg: rgba(15, 15, 35, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --transition-speed: 0.4s;
+}
+
+/* Base Navbar Style */
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 4.5%;
-  color: #ddd;
-  border-bottom: 0.2px solid rgba(48, 48, 48, 0.637);
-  border-right: 0.2px solid rgba(48, 48, 48, 0.637);
-  border-left: 0.2px solid rgba(48, 48, 48, 0.637);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  margin-right: 130px;
-  margin-left: 130px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 25px 32px 0 rgba(0, 0, 0, 0.37);
-  position: sticky; /* Make the navbar sticky */
-  top: 0; /* Stick to the top of the viewport */
-  z-index: 1000; /* Ensure it stays above other content */
+  position: fixed;
+  top: -100px; /* Start above viewport */
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background: rgba(15, 15, 35, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.navbar .logo {
-  width: max(13vw, 157px);
+/* Visible State */
+.navbar.visible {
+  top: 0;
+  background: rgba(15, 15, 35, 0.3);
 }
 
-.navbar ul {
-  display: flex;
-  gap: 60px;
-  list-style: none;
-}
-
-.navbar li {
-  cursor: pointer;
-  position: relative; /* Allow absolute positioning for hover effect */
-}
-
-.navbar li:hover {
-  transform: translateY(-5px); /* Move item up on hover */
-}
-
-.navbar li::after {
-  content: ""; /* Create a line under the item */
-  position: absolute;
+/* Floating State (When Scrolled) */
+.navbar.floating {
+  top: 20px;
   left: 50%;
-  bottom: -5px; /* Position below the item */
-  width: 0; /* Start with no width */
-  height: 2px; /* Line thickness */
-  background: #4169e1; /* Line color */
-  transition: width 0.3s ease, left 0.3s ease; /* Transition for line */
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 1200px;
+  border-radius: 12px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  animation: smooth-drop 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.navbar li:hover::after {
-  width: 100%; /* Expand line on hover */
-  left: 0; /* Center the line */
+/* Smooth Drop Animation */
+@keyframes smooth-drop {
+  0% {
+    transform: translateX(-50%) translateY(-80px);
+    opacity: 0;
+  }
+  80% {
+    transform: translateX(-50%) translateY(5px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
 }
 
+/* Navbar Container */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+/* Logo and Links (keep your existing styles) */
+.logo-link {
+  transition: transform var(--transition-speed) ease;
+}
+.logo-link:hover {
+  transform: scale(1.05);
+}
+.logo {
+  height: 2.2rem;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-link {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color var(--transition-speed) ease;
+}
+.nav-link:hover {
+  color: var(--electric-blue);
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--electric-blue);
+  transition: width var(--transition-speed) ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Right Side Elements */
 .nav-right {
   display: flex;
   align-items: center;
-  gap: max(1vw, 12px);
+  gap: 1.5rem;
 }
 
-.navbar select {
-  padding: 6px 8px; /* Padding for select element */
-  border-radius: 6px; /* Rounded corners */
-  border: 2px solid white; /* Border color */
-  background: rgba(
-    0,
-    0,
-    0,
-    0.5
-  ); /* Transparent background with slight dark tint */
-  color: white; /* Text color */
-  font-size: 12px; /* Font size */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background 0.3s ease; /* Transition for background change */
-}
-
-.navbar select:hover {
-  background: rgba(53, 53, 53, 0.671); /* Background change on hover */
-}
-
-.navbar option {
-  background-color: #ffffff; /* Background color of options */
-  border: none;
-  padding: 10px; /* Padding for options */
-  border-radius: 8px; /* Rounded corners for options */
-  color: rgb(0, 0, 0);
-}
-
-.navbar option:hover {
-  background-color: rgba(
-    53,
-    53,
-    53,
-    0.671
-  ); /* Background color on option hover */
-}
-
-/* Optional: Style for the dropdown menu when focused */
-.navbar select:focus {
-  outline: none; /* Remove default outline */
-  border: 2px solid #4169e1; /* Change border color on focus */
-  background: rgba(0, 0, 0, 0.7); /* Slightly darker background */
-}
-
-button {
-  --primary-color: #4169e1;
-  --secondary-color: #fff;
-  --hover-color: #474747;
-  --arrow-width: 10px;
-  --arrow-stroke: 2px;
-  box-sizing: border-box;
-  border: 0;
-  border-radius: 8px;
-  color: var(--secondary-color);
-  padding: 13px 20px;
-  background: var(--primary-color);
-  display: flex;
-  transition: 0.2s background;
-  align-items: center;
-  gap: 0.6em;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-button .arrow-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-button .arrow {
-  margin-top: 0.4px;
-  width: var(--arrow-width);
-  background: var(--primary-color);
-  height: var(--arrow-stroke);
+/* Currency Dropdown (keep your existing styles) */
+.currency-selector {
   position: relative;
-  transition: 0.2s;
+}
+.currency-dropdown {
+  appearance: none;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--text-light);
+  padding: 0.6rem 2rem 0.6rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem top 50%;
+  background-size: 0.65rem auto;
+}
+.currency-dropdown:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.currency-dropdown:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(65, 105, 225, 0.3);
 }
 
-button .arrow::before {
-  content: "";
-  box-sizing: border-box;
+/* Signup Button (keep your existing styles) */
+.signup-button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, var(--primary-blue), var(--electric-blue));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.8rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.signup-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 198, 255, 0.3);
+}
+.signup-button::before {
+  content: '';
   position: absolute;
-  border: solid var(--secondary-color);
-  border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
-  display: inline-block;
-  top: -3px;
-  right: 3px;
-  transition: 0.2s;
-  padding: 3px;
-  transform: rotate(-45deg);
-
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: 0.5s;
+}
+.signup-button:hover::before {
+  left: 100%;
+}
+.button-arrow {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+.button-arrow svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+.signup-button:hover .button-arrow {
+  transform: translateX(3px);
 }
 
-button:hover {
-  background-color: var(--hover-color);
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .navbar-container {
+    padding: 1rem;
+  }
+  .nav-links {
+    gap: 2rem;
+  }
 }
 
-button:hover .arrow {
-  background: var(--secondary-color);
-}
-
-button:hover .arrow:before {
-  right: 0;
+@media (max-width: 992px) {
+  .nav-links {
+    gap: 1.5rem;
+  }
+  .signup-button {
+    padding: 0.7rem 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    padding: 20px 3%;
+  .navbar.floating {
+    width: 96%;
+    top: 10px;
+    animation: smooth-drop-mobile 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
   }
-  .navbar ul {
-    display: none;
+  @keyframes smooth-drop-mobile {
+    0% {
+      transform: translateX(-50%) translateY(-60px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
   }
-  .navbar button img {
-    width: 13px;
-    width: max(13vw, 133px);
+  .navbar-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  .nav-links {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .nav-right {
+    width: 100%;
+    justify-content: center;
   }
 }
 
-@media (max-width: 971px) {
-  .navbar ul {
-    display: none;
+@media (max-width: 576px) {
+  .nav-links {
+    gap: 1rem;
   }
-  .navbar {
-    margin-right: 20px;
-    margin-left: 20px;
-
+  .nav-link {
+    font-size: 0.9rem;
   }
-  .navbar{
-    padding: 13px 3%;
+  .currency-dropdown {
+    padding: 0.5rem 1.5rem 0.5rem 0.8rem;
   }
-  
-}
-
-
-@media (max-width: 500px){
-  
-  .navbar select{
-    padding-left: 4px;
-    padding-bottom: 2px;
-    padding-top: 2px;
-    padding-right: 4px;
-    font-size: 9px;
-  }
-  button{
-    padding-top: 11px;
-    padding-bottom: 11px;
-    padding-left: 12px;
-    padding-right: 12px;
-    font-size: 12px;
+  .signup-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 }
