@@ -1,115 +1,63 @@
 import React from "react";
-import "./Termsand.css";
+import "./TermsAnd.css";
 
 const TermsAndConditions = ({ onClose }) => {
   return (
     <div className="modal-overlay">
-      <article className="modal-container">
-        <header className="modal-container-header">
-          <span className="modal-container-title">
+      <article className="modal">
+        <header className="modal-header">
+          <h2 className="modal-title">
             <svg
-              aria-hidden="true"
               height="24"
               width="24"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M0 0h24v24H0z" fill="none" />
               <path
+                fill="currentColor"
                 d="M14 9V4H5v16h6.056c.328.417.724.785 1.18 1.085l1.39.915H3.993A.993.993 0 0 1 3 21.008V2.992C3 2.455 3.449 2 4.002 2h10.995L21 8v1h-7zm-2 2h9v5.949c0 .99-.501 1.916-1.336 2.465L16.5 21.498l-3.164-2.084A2.953 2.953 0 0 1 12 16.95V11zm2 5.949c0 .316.162.614.436.795l2.064 1.36 2.064-1.36a.954.954 0 0 0 .436-.795V13h-5v3.949z"
-                fill="currentColor"
-              ></path>
+              />
             </svg>
-            Terms and Services
-          </span>
-          <button className="icon-button" onClick={onClose}>
-            <svg
-              height="24"
-              width="24"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M0 0h24v24H0z" fill="none"></path>
-              <path
-                d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
-                fill="currentColor"
-              ></path>
-            </svg>
+            Terms & Services
+          </h2>
+          <button className="close-button" onClick={onClose} aria-label="Close modal">
+            &times;
           </button>
         </header>
-        <section className="modal-container-body rtf">
-          <span className="black">
-            Cryptocurrency, with its promise of decentralized finance, offers
-            unprecedented opportunities for investors.
-          </span>
+
+        <section className="modal-body">
           <p>
-            The rise of digital currencies like Bitcoin and Ethereum has
-            revolutionized the financial landscape. In a world where traditional
-            finance is often marred by inefficiencies and centralized control,
-            cryptocurrencies emerge as a beacon of innovation. The market is
-            filled with possibilities; however, potential investors must
-            navigate the complexities of this new digital frontier.
-          </p>
-          <span>
-            Investing in cryptocurrency is not merely about purchasing coins; it
-            involves understanding market trends and technological developments.
-          </span>
-          <p>
-            For instance, Bitcoin's price is influenced by various factors,
-            including market demand, regulatory changes, and technological
-            advancements. As more individuals and institutions adopt
-            cryptocurrencies, the prices tend to reflect increased demand, often
-            leading to price surges.
+            <strong>Cryptocurrency</strong>, with its promise of decentralized finance, offers unprecedented opportunities for investors.
           </p>
           <p>
-            Moreover, the volatility of the crypto market presents both
-            opportunities and risks. Investors should conduct thorough research
-            and consider diversifying their portfolios to mitigate risks. As
-            history shows, substantial gains can be achieved, but losses can
-            also be significant.
+            The rise of digital currencies like Bitcoin and Ethereum has revolutionized the financial landscape. In a world dominated by traditional finance, crypto is emerging as a modern solution. But with great potential comes complexity.
           </p>
           <p>
-            The implementation of blockchain technology underpins
-            cryptocurrencies, ensuring transparency and security in
-            transactions. This innovation has the potential to disrupt
-            traditional financial systems by offering faster and cheaper
-            transaction methods.
-          </p>
-          <span>
-            Additionally, the emergence of decentralized finance (DeFi)
-            platforms has transformed how people engage with their assets.
-          </span>
-          <p>
-            DeFi allows users to lend, borrow, and trade cryptocurrencies
-            without intermediaries, enhancing the overall accessibility of
-            financial services. As this sector continues to grow, more users are
-            likely to participate, driving demand and potentially affecting
-            prices.
+            Investing isn’t just about buying coins—it's about understanding trends, risk, and blockchain technology.
           </p>
           <p>
-            However, regulatory scrutiny remains a crucial factor in the
-            cryptocurrency landscape. Governments worldwide are exploring how to
-            regulate this burgeoning market to protect investors while
-            encouraging innovation.
+            Market demand, regulation, and tech updates all shape crypto prices. It’s a high-risk, high-reward world where education is everything.
           </p>
-          <span>
-            Investors must stay informed about legal frameworks as they can
-            significantly impact market dynamics.
-          </span>
           <p>
-            In conclusion, while the world of cryptocurrencies presents unique
-            challenges, it also offers exceptional opportunities for those
-            willing to learn and adapt. Understanding the underlying
-            technologies, market trends, and regulatory environments will
-            empower investors to make informed decisions in this rapidly
-            evolving space.
+            <strong>Blockchain technology</strong> enables transparent, secure transactions—transforming the way we think about finance.
+          </p>
+          <p>
+            DeFi platforms let users lend, borrow, and trade without banks, but risks and regulations are constantly evolving.
+          </p>
+          <p>
+            Informed investors thrive. Stay updated on laws and trends to navigate this fast-paced world responsibly.
+          </p>
+          <p>
+            <strong>Bottom line:</strong> Crypto is powerful, but smart decisions come from continuous learning.
           </p>
         </section>
-        <footer className="modal-container-footer">
-          <button className="button cancel-button" onClick={onClose}>
+
+        <footer className="modal-footer">
+          <button className="btn btn-secondary" onClick={onClose}>
             Cancel
           </button>
-          <button className="button confirm-button" onClick={onClose}>
+          <button className="btn btn-primary" onClick={onClose}>
             I Accept
           </button>
         </footer>

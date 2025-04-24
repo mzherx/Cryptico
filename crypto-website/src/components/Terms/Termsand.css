@@ -1,204 +1,118 @@
-/* From Uiverse.io by Admin12121 */ 
-.button,
-.input,
-.select,
-.textarea {
-  font: inherit;
-}
-
-a {
-  color: inherit;
-}
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000; /* Ensure it is above all other content */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: grid;
+  place-items: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-
-.modal-container {
-  max-height: 80vh; /* Allow the modal to be tall but not overflow the viewport */
-  max-width: 500px;
-  margin: auto;
-  background-color: #ffffff;
+.modal {
+  background: #fff;
+  max-width: 600px;
+  width: 90%;
+  max-height: 90vh;
   border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.3s ease-in-out;
 }
 
-@media (max-width: 600px) {
-  .modal-container {
-    width: 90%;
-  }
-}
-
-.modal-container-header {
-  padding: 16px 32px;
-  border-bottom: 1px solid #c4c4c4;
+.modal-header {
+  background: #f5f7fa;
+  padding: 1rem 1.5rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  color: black;
-} 
-
-.modal-container-title {
-  display: flex;
   align-items: center;
-  gap: 8px;
-  line-height: 1;
-  font-weight: 700;
-  font-size: 1.125;
-  color: black;
+  border-bottom: 1px solid #ddd;
 }
 
-.modal-container-title svg {
-  width: 32px;
-  height: 32px;
+.modal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.modal-title svg {
   color: #4169e1;
 }
 
-.modal-container-body {
-  padding: 24px 32px 0; /* Top padding only for spacing */
-  overflow-y: auto;
-  max-height: 60vh; /* Limit height to prevent overflowing */
-}
-
-.rtf h1,
-.rtf h2,
-.rtf h3,
-.rtf h4,
-.rtf h5,
-.rtf h6 {
-  font-weight: 700;
-  
-}
-
-.rtf h1 {
+.close-button {
+  background: none;
+  border: none;
   font-size: 1.5rem;
-  line-height: 1.125;
-  
-}
-
-.rtf h2 {
-  font-size: 1.25rem;
-  line-height: 1.25;
-}
-
-.rtf h3 {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.rtf > * + * {
-  margin-top: 1em;
-  color: black;
-}
-
-.rtf > * + :is(h1, h2, h3) {
-  margin-top: 2em;
-}
-
-.rtf > :is(h1, h2, h3) + * {
-  margin-top: 0.75em;
-}
-
-.rtf ul,
-.rtf ol {
-  margin-left: 20px;
-  list-style-position: inside;
-}
-
-.rtf ol {
-  list-style: numeric;
-}
-
-.rtf ul {
-  list-style: disc;
-}
-
-.modal-container-footer {
-  padding: 20px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  border-top: 1px solid #c4c4c4;
-  gap: 12px;
-}
-
-.modal-container-footer:after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: -51px;
-  left: 24px;
-  right: 24px;
-  height: 50px;
-  flex-shrink: 0;
-  background-image: linear-gradient(to top, rgba(255, 255, 255, 0.75), transparent);
-  pointer-events: none;
-}
-
-.button {
-  padding: 12px 20px;
-  border-radius: 8px;
-  
-  border: 0;
-  font-weight: 600;
+  color: #555;
   cursor: pointer;
-  transition: 0.15s ease;
+  transition: color 0.2s ease;
 }
 
-.button.is-ghost:hover, .button.is-ghost:focus {
-  background-color: #dfdad7;
+.close-button:hover {
+  color: #e03e3e;
 }
 
-.button.is-primary {
-  background-color: #750550;
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  color: #333;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  border-top: 1px solid #ddd;
+  background: #f9f9f9;
+}
+
+.btn {
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #4169e1;
   color: #fff;
 }
 
-.button.is-primary:hover, .button.is-primary:focus {
-  background-color: #4a0433;
+.btn-primary:hover {
+  background-color: #3453b2;
 }
 
-.icon-button {
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: 0.15s ease;
-  background: rgb(224, 37, 37);
+.btn-secondary {
+  background-color: #ccc;
+  color: #333;
 }
 
-.icon-button svg {
-  width: 24px;
-  height: 24px;
+.btn-secondary:hover {
+  background-color: #aaa;
 }
 
-.icon-button:hover, .icon-button:focus {
-  background-color: #dfdad7;
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
 }
 
-.black{
-  color: black;
-}
-
-.cancel-button{
-  background-color: rgb(112, 112, 112);
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
