@@ -15,8 +15,9 @@ const App = () => {
 
   return (
     <div className='app'>
-      <Navbar />
+      
       {isModalOpen && <TermsAndConditions onClose={handleClose} />}
+      <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/coin/:coinId' element={<Coin />} />
