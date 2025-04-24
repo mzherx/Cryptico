@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { CoinContext } from "../../context/CoinContext";
 import LineChart from "../../components/LineChart/LineChart";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"; // Import Framer Motion
 
 const Coin = () => {
   const { coinId } = useParams();
@@ -90,109 +91,136 @@ const Coin = () => {
 
     return (
       <div className="coin-page">
-        {/* Header Section */}
-        <Link to="/" className="back-button">
-          ← Back to Home
-        </Link>
+        {/* Header Section with Animation */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
+          <Link to="/" className="back-button">
+            ← Back to Home
+          </Link>
 
-        <div className="coin-header">
-          <div className="coin-identity">
-            <img
-              src={coinData.image.large}
-              alt={coinData.name}
-              className="coin-logo"
-            />
-            <div>
-              <h1 className="coin-name">
-                {coinData.name}{" "}
-                <span className="coin-symbol">
-                  ({coinData.symbol.toUpperCase()})
-                </span>
-              </h1>
-              <div className="coin-rank">Rank #{coinData.market_cap_rank}</div>
+          <div className="coin-header">
+            <div className="coin-identity">
+              <img
+                src={coinData.image.large}
+                alt={coinData.name}
+                className="coin-logo"
+              />
+              <div>
+                <h1 className="coin-name">
+                  {coinData.name}{" "}
+                  <span className="coin-symbol">
+                    ({coinData.symbol.toUpperCase()})
+                  </span>
+                </h1>
+                <div className="coin-rank">Rank #{coinData.market_cap_rank}</div>
+              </div>
+            </div>
+
+            <div className="coin-price-section">
+              <div className="current-price">
+                {currency.symbol}
+                {coinData.market_data.current_price[
+                  currency.name
+                ].toLocaleString()}
+              </div>
+              <div className={`price-change ${priceChangeColor}`}>
+                {priceChange24h >= 0 ? "+" : ""}
+                {priceChange24h.toFixed(2)}%
+              </div>
             </div>
           </div>
+        </motion.div>
 
-          <div className="coin-price-section">
-            <div className="current-price">
-              {currency.symbol}
-              {coinData.market_data.current_price[
-                currency.name
-              ].toLocaleString()}
-            </div>
-            <div className={`price-change ${priceChangeColor}`}>
-              {priceChange24h >= 0 ? "+" : ""}
-              {priceChange24h.toFixed(2)}%
-            </div>
-          </div>
-        </div>
-
-        {/* Chart Section */}
-        <div className="chart-container">
+        {/* Chart Section with Animation */}
+        <motion.div
+          className="chart-container"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
           <LineChart historicalData={historicalData} />
-        </div>
+        </motion.div>
 
-        {/* Stats Section */}
-        <div className="stats-grid">
-          <div className="stat-card">
-            <div className="stat-label">Market Cap</div>
-            <div className="stat-value">
-              {currency.symbol}
-              {coinData.market_data.market_cap[currency.name].toLocaleString()}
-            </div>
-          </div>
+        {/* Stats Section with Animation */}
+        <motion.div
+          className="stats-grid"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
+          {coinData.market_data && (
+            <>
+              <motion.div className="stat-card" whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
+                <div className="stat-label">Market Cap</div>
+                <div className="stat-value">
+                  {currency.symbol}
+                  {coinData.market_data.market_cap[currency.name].toLocaleString()}
+                </div>
+              </motion.div>
 
-          <div className="stat-card">
-            <div className="stat-label">24h Trading Volume</div>
-            <div className="stat-value">
-              {currency.symbol}
-              {coinData.market_data.total_volume[
-                currency.name
-              ].toLocaleString()}
-            </div>
-          </div>
+              <motion.div className="stat-card" whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
+                <div className="stat-label">24h Trading Volume</div>
+                <div className="stat-value">
+                  {currency.symbol}
+                  {coinData.market_data.total_volume[currency.name].toLocaleString()}
+                </div>
+              </motion.div>
 
-          <div className="stat-card">
-            <div className="stat-label">24h High</div>
-            <div className="stat-value">
-              {currency.symbol}
-              {coinData.market_data.high_24h[currency.name].toLocaleString()}
-            </div>
-          </div>
+              <motion.div className="stat-card" whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
+                <div className="stat-label">24h High</div>
+                <div className="stat-value">
+                  {currency.symbol}
+                  {coinData.market_data.high_24h[currency.name].toLocaleString()}
+                </div>
+              </motion.div>
 
-          <div className="stat-card">
-            <div className="stat-label">24h Low</div>
-            <div className="stat-value">
-              {currency.symbol}
-              {coinData.market_data.low_24h[currency.name].toLocaleString()}
-            </div>
-          </div>
+              <motion.div className="stat-card" whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
+                <div className="stat-label">24h Low</div>
+                <div className="stat-value">
+                  {currency.symbol}
+                  {coinData.market_data.low_24h[currency.name].toLocaleString()}
+                </div>
+              </motion.div>
 
-          <div className="stat-card">
-            <div className="stat-label">Circulating Supply</div>
-            <div className="stat-value">
-              {coinData.market_data.circulating_supply.toLocaleString()}{" "}
-              {coinData.symbol.toUpperCase()}
-            </div>
-          </div>
+              <motion.div className="stat-card" whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
+                <div className="stat-label">Circulating Supply</div>
+                <div className="stat-value">
+                  {coinData.market_data.circulating_supply.toLocaleString()}{" "}
+                  {coinData.symbol.toUpperCase()}
+                </div>
+              </motion.div>
 
-          <div className="stat-card">
-            <div className="stat-label">All Time High</div>
-            <div className="stat-value">
-              {currency.symbol}
-              {coinData.market_data.ath[currency.name].toLocaleString()}
-            </div>
-          </div>
-        </div>
+              <motion.div className="stat-card" whileInView={{ opacity: 1 }} transition={{ duration: 1 }}>
+                <div className="stat-label">All Time High</div>
+                <div className="stat-value">
+                  {currency.symbol}
+                  {coinData.market_data.ath[currency.name].toLocaleString()}
+                </div>
+              </motion.div>
+            </>
+          )}
+        </motion.div>
 
-        {/* Additional Info Section */}
-        <div className="info-section">
+        {/* Additional Info Section with Animation */}
+        <motion.div
+          className="info-section"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
           <h2>About {coinData.name}</h2>
           <p
             className="coin-description"
             dangerouslySetInnerHTML={{ __html: coinData.description.en }}
           ></p>
-        </div>
+        </motion.div>
       </div>
     );
   }

@@ -1,11 +1,19 @@
 import React from "react";
 import "./Termsand.css";
-
+import { motion } from "framer-motion"; // Import framer-motion
 
 const TermsAndConditions = ({ onClose }) => {
   return (
     <div className="modal-overlay">
-      <article className="modal">
+      {/* Modal with animation */}
+      <motion.article
+        className="modal"
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }} // Animation happens only once when the modal comes into view
+        transition={{ duration: 0.5 }} // Transition duration
+      >
+        {/* Modal Header */}
         <header className="modal-header">
           <h2 className="modal-title">
             <svg
@@ -27,6 +35,7 @@ const TermsAndConditions = ({ onClose }) => {
           </button>
         </header>
 
+        {/* Modal Body */}
         <section className="modal-body">
           <p>
             <strong>Cryptocurrency</strong>, with its promise of decentralized finance, offers unprecedented opportunities for investors.
@@ -54,6 +63,7 @@ const TermsAndConditions = ({ onClose }) => {
           </p>
         </section>
 
+        {/* Modal Footer */}
         <footer className="modal-footer">
           <button className="btn btn-secondary" onClick={onClose}>
             Cancel
@@ -62,7 +72,7 @@ const TermsAndConditions = ({ onClose }) => {
             I Accept
           </button>
         </footer>
-      </article>
+      </motion.article>
     </div>
   );
 };
