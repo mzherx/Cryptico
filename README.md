@@ -9,7 +9,7 @@ Check out the live site here: https://crypticoo.netlify.app/
 
 ## Screenshots
 
-[![Capture.png](https://i.postimg.cc/xd4P2fQh/Capture.png)](https://postimg.cc/5H8z5M6S)
+![Demo GIF](./gif.gif)
 
 
 ## Features
